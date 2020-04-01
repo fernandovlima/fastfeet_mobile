@@ -18,7 +18,7 @@ import {
 
 import logo from '../../assets/fastfeet-logo.png';
 
-function Login({ state, dispatch }) {
+function Login({ state, dispatch, navigation }) {
   const [id, setId] = useState('');
   const { loading } = state;
   // const [deliveryman, setDeliveryman] = useState({});
@@ -101,6 +101,7 @@ function Login({ state, dispatch }) {
       console.tron.log('ID: ', id);
 
       dispatch(loginRequest({ id }));
+
       console.tron.log('STATE:', state);
       Keyboard.dismiss();
       setId('');

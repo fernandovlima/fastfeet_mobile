@@ -4,7 +4,7 @@ import api from '../../../services/api';
 
 import { loginSuccess, loginFailure } from './actions';
 
-export function* signIn({ payload, navigation }) {
+export function* signIn({ payload }) {
   try {
     const { id } = payload;
     console.tron.log('ID em sagas: ', id);
@@ -13,15 +13,9 @@ export function* signIn({ payload, navigation }) {
 
     console.tron.log('RESPONSE SAGAS: ', response);
     const deliveryman = response.data;
+    console.tron.log('deliveryman em SAGAS: ', deliveryman);
 
     yield put(loginSuccess(deliveryman));
-
-    navigation.navigate('Main', {
-      screen: 'Entregas',
-      params: {
-        screen: 'EntregasLista',
-      },
-    });
   } catch (error) {
     yield put(loginFailure());
   }
