@@ -2,7 +2,7 @@ import produce from 'immer';
 
 const INITIAL_STATE = {
   id: null,
-  deliveryman: null,
+  deliveryman: {},
   loading: false,
 };
 
@@ -15,7 +15,7 @@ export default function login(state = INITIAL_STATE, action) {
         break;
       }
       case '@login/LOGIN_SUCCESS': {
-        draft.deliveryman = action.payload.deliveryman;
+        draft.deliveryman = action.payload;
         draft.loading = false;
 
         break;

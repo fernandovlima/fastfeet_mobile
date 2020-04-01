@@ -1,10 +1,13 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 
+import * as RootNavigation from '../../../services/navigation/RootNavigation';
 import api from '../../../services/api';
 
 import { loginSuccess, loginFailure } from './actions';
 
 export function* signIn({ payload }) {
+  console.tron.log('porra: ', payload);
+
   try {
     const { id } = payload;
     console.tron.log('ID em sagas: ', id);
@@ -16,13 +19,15 @@ export function* signIn({ payload }) {
     console.tron.log('deliveryman em SAGAS: ', deliveryman);
 
     yield put(loginSuccess(deliveryman));
+
+    RootNavigation.navigate('Main');
   } catch (error) {
     yield put(loginFailure());
   }
 }
 
-export function signOut({ navigation }) {
-  navigation.navigate('Login');
+export function signOut() {
+  RootNavigation.navigate('Login');
 }
 
 export default all([

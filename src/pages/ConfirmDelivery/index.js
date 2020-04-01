@@ -34,8 +34,8 @@ export default function ConfirmDelivery() {
         fixOrientation: true,
         skipProcessing: true,
       });
-      onChangePhoto(data);
-      console.tron.log('URL IMAGE:', data);
+      onChangePhoto(data.uri);
+      console.tron.log('URL IMAGE:', data.uri);
     } catch (error) {
       Alert.alert('Erro', 'Houve um erro ao tirar a foto.');
     }

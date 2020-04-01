@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import DeliveryInfoCard from '../../components/DeliveryInfoCard';
 import DeliveryStatusCard from '../../components/DeliveryStatusCard';
@@ -6,7 +7,7 @@ import DeliveryActions from '../../components/DeliveryActions';
 
 import { Container } from './styles';
 
-export default function DeliveryDetails() {
+function DeliveryDetails() {
   return (
     <Container>
       <DeliveryInfoCard />
@@ -15,3 +16,4 @@ export default function DeliveryDetails() {
     </Container>
   );
 }
+export default connect()(DeliveryDetails);

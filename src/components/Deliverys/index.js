@@ -1,6 +1,8 @@
 import React from 'react';
-// import AsyncStorage from '@react-native-community/async-storage';
+import { connect } from 'react-redux';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { signOut } from '../../store/modules/login/actions';
 
 import {
   Container,
@@ -22,11 +24,10 @@ import {
 
 import Card from '../DeliveryCard';
 
-export default function Deliverys({ route, navigation }) {
-  const { name } = route.params;
-
+function Deliverys({ navigation, deliveryman, dispatch }) {
+  console.tron.log('DELIVERYMAN:', deliveryman);
   const logout = async () => {
-    navigation.navigate('Login');
+    dispatch(signOut());
   };
 
   return (
@@ -39,7 +40,7 @@ export default function Deliverys({ route, navigation }) {
         />
         <TextContent>
           <WelcomeMessage>bem vindo de volta,</WelcomeMessage>
-          <DeliverymanName>{name}</DeliverymanName>
+          <DeliverymanName>{deliveryman.name}</DeliverymanName>
         </TextContent>
         <LogoutButton onPress={logout} activeOpacity={0.5}>
           <Icon name="sign-out" size={30} color="#ff0000" />
@@ -68,3 +69,11 @@ export default function Deliverys({ route, navigation }) {
     </Container>
   );
 }
+
+const mapStateToProps = (state) => ({
+  deliveryman: state.login.deliveryman,
+});
+
+const mapDispatchToProps = (dispatch) => bindActionCreators(dispatch);
+
+export default connect(mapStateToProps)(Deliverys);
