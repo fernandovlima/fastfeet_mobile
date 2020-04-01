@@ -1,5 +1,5 @@
 import React from 'react';
-import AsyncStorage from '@react-native-community/async-storage';
+// import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {
@@ -27,7 +27,6 @@ export default function Deliverys({ route, navigation }) {
 
   const logout = async () => {
     navigation.navigate('Login');
-    await AsyncStorage.clear();
   };
 
   return (

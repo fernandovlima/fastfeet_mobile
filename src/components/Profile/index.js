@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import AsyncStorage from '@react-native-community/async-storage';
-
 import {
   Container,
   Content,
@@ -16,24 +14,20 @@ import {
 export default function Profile({ navigation }) {
   const [deliveryman, setDeliveryman] = useState();
 
-  const getData = async () => {
-    try {
-      const value = await AsyncStorage.getItem('userInAsyncStorage');
+  // const getData = async () => {
+  //   try {
+  //     const value = await AsyncStorage.getItem('userInAsyncStorage');
 
-      if (value) {
-        const man = JSON.parse(value);
-        console.tron.log(`MAN: ${man}`);
-        setDeliveryman(man);
-        console.tron.log(`STATE: ${deliveryman}`);
-      }
-    } catch (error) {
-      console.tron.log(`ERROR: ${error}`);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
+  //     if (value) {
+  //       const man = JSON.parse(value);
+  //       console.tron.log(`MAN: ${man}`);
+  //       setDeliveryman(man);
+  //       console.tron.log(`STATE: ${deliveryman}`);
+  //     }
+  //   } catch (error) {
+  //     console.tron.log(`ERROR: ${error}`);
+  //   }
+  // };
 
   const logout = async () => {
     navigation.navigate('Login');
