@@ -59,7 +59,6 @@ function Login({ state, dispatch, navigation }) {
           </TextButton>
         </SubmitButton>
       </Form>
-      <Text>{JSON.stringify(state)}</Text>
     </Container>
   );
 }

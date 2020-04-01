@@ -25,7 +25,7 @@ export default function login(state = INITIAL_STATE, action) {
         break;
       }
       case '@login/SIGN_OUT': {
-        draft.deliveryman = null;
+        draft.deliveryman = {};
 
         break;
       }

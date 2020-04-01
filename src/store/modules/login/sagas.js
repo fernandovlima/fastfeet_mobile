@@ -10,13 +10,10 @@ export function* signIn({ payload }) {
 
   try {
     const { id } = payload;
-    console.tron.log('ID em sagas: ', id);
 
     const response = yield call(api.get, `deliveryman/${id}`);
 
-    console.tron.log('RESPONSE SAGAS: ', response);
     const deliveryman = response.data;
-    console.tron.log('deliveryman em SAGAS: ', deliveryman);
 
     yield put(loginSuccess(deliveryman));
 
