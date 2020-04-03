@@ -20,7 +20,7 @@ import logo from '../../assets/fastfeet-logo.png';
 
 function Login({ state, dispatch, navigation }) {
   const [id, setId] = useState('');
-  const { loading } = state;
+  const { loading } = state.login;
 
   async function handleSubmit() {
     dispatch(loginRequest(id));
@@ -32,11 +32,7 @@ function Login({ state, dispatch, navigation }) {
         { cancelable: false }
       );
     } else {
-      console.tron.log('ID: ', id);
-
       dispatch(loginRequest({ id }));
-
-      console.tron.log('STATE:', state);
       Keyboard.dismiss();
       setId('');
     }

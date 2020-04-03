@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { format, parseISO } from 'date-fns';
+import { signOut } from '../../store/modules/login/actions';
 
 import {
   Container,
@@ -11,29 +14,15 @@ import {
   ButtonText,
 } from './styles';
 
-export default function Profile({ navigation }) {
-  const [deliveryman, setDeliveryman] = useState();
-
-  // const getData = async () => {
-  //   try {
-  //     const value = await AsyncStorage.getItem('userInAsyncStorage');
-
-  //     if (value) {
-  //       const man = JSON.parse(value);
-  //       console.tron.log(`MAN: ${man}`);
-  //       setDeliveryman(man);
-  //       console.tron.log(`STATE: ${deliveryman}`);
-  //     }
-  //   } catch (error) {
-  //     console.tron.log(`ERROR: ${error}`);
-  //   }
-  // };
-
+function Profile({ dispatch, deliveryman }) {
+  console.tron.log('del:', deliveryman.created_at);
   const logout = async () => {
-    navigation.navigate('Login');
-    await AsyncStorage.clear();
+    dispatch(signOut());
   };
+  const newDate = parseISO(deliveryman.created_at);
 
+  const dateFormatted = format(newDate, 'dd-MM-yyyy');
+  console.tron.log(dateFormatted);
   return (
     <>
       {deliveryman ? (
@@ -41,7 +30,7 @@ export default function Profile({ navigation }) {
           <Content>
             <AvatarContainer
               source={{
-                uri: 'https://api.adorable.io/avatars/80/abott@adorable.png',
+                uri: deliveryman.avatar.url,
               }}
             />
             <DetailsContent>
@@ -50,7 +39,7 @@ export default function Profile({ navigation }) {
               <Label>email</Label>
               <Detail>{deliveryman.email}</Detail>
               <Label>data de cadastro</Label>
-              <Detail>{deliveryman.createdAt}</Detail>
+              <Detail>{dateFormatted}</Detail>
             </DetailsContent>
             <LogoutButton onPress={logout}>
               <ButtonText>logout</ButtonText>
@@ -63,3 +52,10 @@ export default function Profile({ navigation }) {
     </>
   );
 }
+
+//
+
+const mapStateToProps = (state) => ({
+  deliveryman: state.login.deliveryman,
+});
+export default connect(mapStateToProps)(Profile);

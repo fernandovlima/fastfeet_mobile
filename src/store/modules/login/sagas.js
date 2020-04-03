@@ -6,8 +6,6 @@ import api from '../../../services/api';
 import { loginSuccess, loginFailure } from './actions';
 
 export function* signIn({ payload }) {
-  console.tron.log('porra: ', payload);
-
   try {
     const { id } = payload;
 

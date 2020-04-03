@@ -25,7 +25,6 @@ import {
 import Card from '../DeliveryCard';
 
 function Deliverys({ navigation, deliveryman, dispatch }) {
-  console.tron.log('DELIVERYMAN:', deliveryman);
   const logout = async () => {
     dispatch(signOut());
   };
@@ -35,7 +34,7 @@ function Deliverys({ navigation, deliveryman, dispatch }) {
       <DeliverymanContent>
         <Avatar
           source={{
-            uri: 'https://api.adorable.io/avatars/80/abott@adorable.png',
+            uri: deliveryman.avatar.url,
           }}
         />
         <TextContent>
@@ -73,7 +72,5 @@ function Deliverys({ navigation, deliveryman, dispatch }) {
 const mapStateToProps = (state) => ({
   deliveryman: state.login.deliveryman,
 });
-
-const mapDispatchToProps = (dispatch) => bindActionCreators(dispatch);
 
 export default connect(mapStateToProps)(Deliverys);
